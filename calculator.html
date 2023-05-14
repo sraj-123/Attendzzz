@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 3px;
+            padding: 2px;
+        }
+        .calculator{
+            display:grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 5px;
+            gap:10px;
+            width:50%;
+            box-shadow: 12px 15px 15px 4px rgb(150, 226, 204);
+            padding: 6px;
+            margin: 5px;
+            margin-left: 24%;
+            margin-bottom: 10px;
+            border: 1px solid black;
+        }
+        .calculator:hover{
+            box-shadow: 12px 15px 15px 4px rgb(127, 195, 90);
+            transition: 0.3 all ease-in-out;
+            border: 3px solid black;
+            border-radius:3px;
+        }
+        h1{
+            background-color: black;
+            color:greenyellow;
+            text-align: center;
+            border: 3px solid black;
+            border-radius:3px;
+
+        }
+        h1:hover{
+            background-color:coral;
+            color:black;
+            box-shadow: 0 4px 14px 0 yellow;
+        }
+        @media (max-width: 768px) {
+            .calculator {
+                width: 90%; /* Decrease width to fit smaller screens */
+                margin-left: 5%; /* Center calculator on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <div class="calculator">
+        <input type="text" id="result" placeholder="Enter" disabled >
+        <button onclick="clearResult()">C</button>
+        <button onclick="calculate('/')">/</button>
+        <button onclick="calculate('*')">*</button>
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('9')">9</button>
+        <button onclick="calculate('8')">8</button>
+        <button onclick="calculate('7')">7</button>
+        <button onclick="calculate('4')">4</button>
+        <button onclick="calculate('5')">5</button>
+        <button onclick="calculate('6')">6</button>
+        <button onclick="calculate('3')">3</button>
+        <button onclick="calculate('2')">2</button>
+        <button onclick="calculate('1')">1</button>
+        <button onclick="calculate('0')">0</button>
+        <button onclick="calculate('.')">.</button>
+        <button onclick="calculate('=')">=</button>
+    </div> 
+
+    <script>
+        let calculation = "";
+        function calculate(value){
+            if(value==="="){
+                document.getElementById("result").value = eval(calculation);
+
+            }
+            else{
+                calculation+=value;
+                document.getElementById("result").value = calculation;
+            }
+        }
+        function clearResult(){
+            calculation = "";
+            document.getElementById("result").value = "";
+        }
+
+
+
+    </script>
+</body>
+</html>

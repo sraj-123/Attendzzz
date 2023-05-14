@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:darksalmon;
+            overflow: hidden;
+        }
+        .font{
+            font-weight: bold;
+            margin-bottom: 5px;
+            margin-left: 20%;
+        }
+        .font2{
+            margin-top: 10px;
+            margin-left: 20%;
+        }
+        .error{
+            color: red;
+            display: none;
+        }
+        input[type="text"], input[type="password"],button[type="submit"]{
+            display: block;
+            width: 50%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 3px solid black;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-left: 20%;
+
+        } 
+        input[type="text"]:focus, input[type="password"]:focus{
+            outline: none;
+            box-shadow: 0 4px 12px 0 black;
+            cursor: pointer;
+            transition: 0.2 all ease-in-out;
+            padding: 5px;
+        }
+        button{
+            background-color:lawngreen;
+            color:black;
+            
+            
+        }
+        button:hover{
+            background-color:limegreen;
+            color:black;
+            box-shadow: 0 5px 12px 0 white;
+            transition: 0.2 all ease-in-out ;
+        }
+        .conatiner{
+            width: 50%;
+            background-color: black;
+            color:greenyellow;
+            align-items: center;
+            margin-top: 10%;
+            margin-left: 22%;
+            padding: 5px;
+        }
+        .conatiner:hover{
+            box-shadow: 0 5px 12px 0 green;
+            transition: 0.2 all ease-in-out green;
+        }
+        button[type="submit"]{
+            margin-left: 110px;
+            width: 40%;
+        }
+        h1{
+            background-color: black;
+            color:greenyellow;
+            text-align: center;
+
+        }
+        h1:hover{
+            background-color:indianred;
+            color:black;
+            box-shadow: 0 4px 12px 0 white;
+        }
+    </style>
+</head>
+<body>
+    <h1>LOGIN PAGE</h1>
+    <div class="conatiner">
+        <form onsubmit="return validate()" name="login" id="login">
+            <div class="font">Email or Phone</div>
+            <div class="error">Email Error</div>
+            <input type="text" name="email" id="email" autocomplete="off" placeholder="Enter Your Email">
+            <div class="font2">Password</div>
+            <div class="error">Password Error</div>
+            <input type="password" name="password" id="password" placeholder="Enter your password">
+            <button type="submit">SUBMIT</button> 
+        
+        
+        
+        </form>
+
+    </div>
+
+    <script>
+        let email = document.forms["login"]["email"];
+        let password = document.forms["login"]["password"];
+        let email_error = document.getElementById("email_error");
+        let pass_error = document.getElementById("pass_error");
+        function validate() {
+            if(email.value.trim()===""){
+                email.style.borderColor = "red";
+                email_error.style.display = "block";
+                email.focus();
+                return false;
+            }
+            if(password.value.trim()===""){
+                password.style.borderColor = "red";
+                pass_error.style.display = "block";
+                password.focus();
+                return false;
+
+            }
+            return true;
+        }
+        email.addEventListener("input",email_verify);
+        password.addEventListener("input",pass_verify);
+
+        function email_verify(){
+            if(email.value.trim===""){
+                email.style.borderColor = "silver";
+                email_error.style.display = "none";
+
+            }
+            else{
+                email.style.borderColor = "silver";
+                email_error.style.display = "none";
+
+
+            }
+        }
+        function pass_verify(){
+            if(password.value.trim()===""){
+                password.style.borderColor = "silver";
+                pass_error.style.display = "none";
+                
+            }
+            else{
+                password.style.borderColor = "silver";
+                pass_error.style.display = "none";
+            }
+        }
+    </script>
+    
+</body>
+</html>

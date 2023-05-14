@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            background-color: black;
+            color:greenyellow;
+            border: 3px solid black;
+            border-radius:5px;
+            text-align: center;
+            
+        }
+        h1:hover{
+            background-color:coral;
+            color: black;
+            box-shadow: 0 0 5px rgba(0,0,0);
+
+        }
+        div{
+            background-color:cyan;
+            color:black;
+            border: 3px solid black;
+            border-radius:5px;
+            align-items: center;
+        }
+        div:hover{
+            box-shadow: 0 4px 12px 0 green;
+            border: 3px solid burlywood;
+
+        }
+        button{
+            margin-left: 24%;
+            background-color:darkseagreen;
+            color:black;
+        }
+        button:hover{
+            background-color:lime;
+            color:black;
+            transition: 0.3s all ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <h1>ABOUT US</h1>
+    <div>
+        <button class="button" onclick="myName()">THIS WEBSITE HAS BEEN CREATED BY (CLICK ON A BUTTON)</button>
+        <p id="demo"></p>
+    </div>
+    <script>
+        tree = true;
+        function myName(){
+            if(tree){
+                document.getElementById("demo").innerHTML = "SHUBHAM RAJ";
+                tree = false;
+            }
+            else{
+                document.getElementById("demo").innerHTML = "";
+                tree = true;
+            }
+        }
+    </script>
+</body>
+</html>

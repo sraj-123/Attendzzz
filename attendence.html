@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:lightsalmon;
+            overflow: scroll;
+        }
+        .container{
+            background-color: black;
+            color:greenyellow;
+            padding: 15px;
+            margin: 3px;
+            
+            
+
+        }
+        .container:hover{
+            box-shadow: 0 4px 12px 0 green;
+            border:4px  solid  black;
+            border-radius:3px;
+
+        }
+        label,input{
+            padding: 6px;
+            margin: 4px;
+            margin-left: 30px;
+
+        }
+        button{
+            padding: 4px;
+            margin:20px;
+            margin-left: 13%;
+        }
+        table td{
+            
+            padding: 30px;
+            margin-left: 30%;
+
+        }
+        .ty{
+            background-color:lightseagreen;
+            color:black;
+            margin-left: 30%;
+            margin-right: 28%;
+            box-shadow: 0 4p 12px 0 yellow;
+            
+        }
+        .ty td{
+            color:greenyellow;
+            background-color: black;
+            border:3px solid black;
+
+        }
+        .ty td:hover{
+            background-color:cornflowerblue;
+            color: black;
+            transition: 0.3s all ease-in-out;
+            
+        }
+        .present-btn{
+            background-color: green;
+            color: black;
+        }
+        .present-btn:hover{
+            background-color: rgb(125, 241, 125);
+            color: black;
+            box-shadow: 0 4px 12px 0 white;
+            border: 2px solid black;
+        }
+        .absent-btn{
+            background-color: red;
+            color: black;
+        }
+        .absent-btn:hover{
+            background-color:darkred;
+            color: white;
+            box-shadow: 0 4px 12px 0 white;
+            border: 2px solid black;
+        }
+        .download-btn{
+            background-color: yellow;
+            color: black;
+        }
+        .download-btn:hover{
+            background-color: rgb(241, 200, 125);
+            color: black;
+            box-shadow: 0 4px 12px 0 white;
+            border: 2px solid black;
+        }
+        h1{
+            background-color:rgb(135, 216, 222);
+            color: black;
+            border:3px solid black;
+            text-align: center;
+
+        }
+        h1:hover{
+            background-color:lawngreen;
+            color: black;
+            box-shadow: 0 4px 12px 0 white;
+            border: 3px solid black;
+            border-radius: 4px;
+        }
+        @media only screen and (max-width: 600px) {
+    body {
+        background-color: lightsalmon;
+    }
+    .container {
+        padding: 10px;
+        margin: 0;
+    }
+    label, input {
+        display: block;
+        margin: 10px 0;
+        margin-left: 0;
+        width: 100%;
+    }
+    button {
+        margin: 10px 0;
+        margin-left: 0;
+        width: 100%;
+    }
+    table td {
+        padding: 10px;
+        margin-left: 0;
+    }
+    .ty {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+        
+
+    </style>
+</head>
+<body>
+    <h1>WELCOME TO ATTENDEZZZ</h1>
+    <div class="container">
+        <form>
+            <label for="roll">ROLL</label>
+            <input type="number" id="roll" name="roll">
+            <label for="name">NAME</label>
+            <input type="text" id="name" name="name">
+        </form> 
+        <div class="btn-container">
+            <button type="button" onclick="attendenceMarker('Present')" class="present-btn"><b>PRESENT</b></button>
+            <button type="button" onclick="attendenceMarker('ABSENT')" class="absent-btn"><b>ABSENT</b></button>
+            <button type="button" onclick="attendenceDownload()" class="download-btn"><b>DOWNLOAD</b></button>
+
+        </div>
+    </div>
+    <div class="ty">
+        <table>
+            <thead>
+                <tr class="td">
+                    <td>ROLL</td>
+                    <td>NAME</td>
+                    <td>STATUS</td>
+                </tr>
+            </thead>
+            <tbody id="attendenceTable"></tbody>
+        </table>
+    </div>
+    
+
+    <script>
+        function attendenceMarker(status){
+        let roll = document.getElementById("roll").value;
+        let name = document.getElementById("name").value;
+        let table = document.getElementById("attendenceTable");
+        let newRow = table.insertRow(-1);
+        let rollCell = newRow.insertCell(0);
+        let nameCell = newRow.insertCell(1);
+        let statusCell = newRow.insertCell(2);
+        rollCell.innerHTML = roll;
+        nameCell.innerHTML = name;
+        statusCell.innerHTML = status;
+        }
+        function attendenceDownload(){
+            const attendenceTable = document.getElementById("attendenceTable");
+            const exportTable = document.createElement("table");
+            exportTable.innerHTML = attendenceTable.outerHTML;
+            exportTable.deleteRow(0);
+            const csv = [
+                Array.from(exportTable.querySelectorAll("tr")).map(row=>{
+                    return Array.from(row.querySelectorAll("td")).map(cell=>{
+                        return cell.innerText;
+
+                    }).join(",");
+                }).join("\n")
+            ].join("\n");
+            const blob = new Blob([csv],{type:"text/csv"});
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.click();
+            link.download = "attendence.csv";
+            URL.revokeObjectURL(url);
+            link.remove();
+
+
+
+        }
+
+
+
+    </script>
+</body>
+</html>
